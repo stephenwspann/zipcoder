@@ -9,11 +9,13 @@ import Foundation
 
 enum ZipCodeApiError: Error {
     case settingsFileNotFound
-    case insufficientFunds(coinsNeeded: Int)
-    case outOfStock
+    case jsonMissingApiKey
+    case jsonError
 }
 
 class ZipCodeApi {
+    
+    var apiKey: String
     
     init() throws {
         if let path = Bundle.main.path(forResource: "app_settings", ofType: "json") {
@@ -22,17 +24,64 @@ class ZipCodeApi {
                 let jsonResult = try JSONSerialization.jsonObject(with: data, options: .mutableLeaves)
                 if let jsonResult = jsonResult as? Dictionary<String, AnyObject>, let key = jsonResult["ZIP_CODE_API_KEY"] as? String {
                     print("key: " + key)
+                    apiKey = key
                 } else {
-                    print("something else happened?")
+                    throw ZipCodeApiError.jsonMissingApiKey
                 }
             } catch {
-                print("Unexpected error: \(error).")
+                throw error
             }
         } else {
             throw ZipCodeApiError.settingsFileNotFound
         }
     }
     
+    // format: https://www.zipcodeapi.com/rest/<api_key>/radius.<format>/<zip_code>/<distance>/<units>
+    func getApiUrl(zipCode: Int, distance: Int) -> URL {
+        let urlString = "https://www.zipcodeapi.com/rest/" + apiKey + "/radius.json/" + String(zipCode) + "/" + String(distance) + "/km"
+        let url = URL(string: urlString)!
+        return url
+    }
+    
+    func getZipCodes(zipCode: Int, distance: Int, completionHandler: @escaping([ZipCode]) -> Void) {
+        let url = getApiUrl(zipCode: zipCode, distance: distance)
+        
+        print("get zip codes!")
+        
+        let task = URLSession.shared.dataTask(with: url, completionHandler: { (data, response, error) in
+            if let error = error {
+                print("Error with fetching films: \(error)")
+                return
+            }
+
+            guard let httpResponse = response as? HTTPURLResponse,
+                (200...299).contains(httpResponse.statusCode) else {
+                print("Error with the response, unexpected status code: \(response)")
+                return
+            }
+
+            if let zipData = data {
+
+                do {
+                    if let decodedResponse = try? JSONDecoder().decode(ZipCodeApiResponse.self, from: zipData) {
+                        completionHandler(decodedResponse.zip_codes)
+                    } else {
+                        print("decode error 2")
+                    }
+
+                } catch let jsonError as NSError {
+                    print("JSON decode failed: \(jsonError.localizedDescription)")
+                }
+            } else {
+                print("decode error")
+                
+            }
+        })
+        
+        task.resume()
+    }
+    
+
     /*
     
     // NOTE: API Keys should not be in Git repositories or source code,

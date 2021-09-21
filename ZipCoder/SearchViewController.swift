@@ -27,6 +27,12 @@ class SearchViewController: UIViewController {
         
         super.viewDidLoad()
         
+        do {
+            try zipCodeApi = ZipCodeApi()
+        } catch {
+            
+        }
+        
         
         viewModel.$searchState.sink { searchState in
             switch(searchState) {
@@ -59,6 +65,13 @@ class SearchViewController: UIViewController {
     
     @objc func searchTapped() {
         print("search!")
+        zipCodeApi?.getZipCodes(zipCode: 30308, distance: 5, completionHandler: {(zipCodeResults) in
+            print("got results!")
+            for zip in zipCodeResults {
+                print(zip.zip_code)
+            }
+        })
+        
     }
 
 

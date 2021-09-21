@@ -7,12 +7,13 @@
 
 import Foundation
 
-// example result
-// {"zip_code":"30312","distance":1.828,"city":"Atlanta","state":"GA"}
-
-struct ZipCodeResult {
-    let zipCode: UInt32
+struct ZipCode: Codable {
+    let zip_code: String
     let distance: Float
     let city: String
     let state: String
+}
+
+struct ZipCodeApiResponse: Codable {
+    var zip_codes: [ZipCode]
 }
