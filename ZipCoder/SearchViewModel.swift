@@ -28,6 +28,8 @@ class SearchViewModel: ObservableObject {
         didSet {
             filteredZipCodes = _zipCodes.filter {
                 $0.zipCode != String(_searchedZipCode)
+            }.sorted {
+                $0.distance < $1.distance
             }
         }
     }
