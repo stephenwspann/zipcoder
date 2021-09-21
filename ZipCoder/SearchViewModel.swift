@@ -14,9 +14,7 @@ enum SearchState {
 }
 
 class SearchViewModel: ObservableObject {
-    
-    weak var delegate: SearchViewModelDelegate?
-    
+
     @Published var searchState: SearchState = SearchState.initialState
     
     @Published var zipCodes: [ZipCodeJson] = [ZipCodeJson]()
