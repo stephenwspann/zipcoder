@@ -22,7 +22,6 @@ class SearchViewModel: ObservableObject {
     @Published var filteredZipCodes: [ZipCode] = [ZipCode]()
     
     private var _searchedZipCode: Int = 0
-    private var _searchedRadius: Int = 0
     
     private var _zipCodes = [ZipCode]() {
         didSet {
@@ -46,10 +45,10 @@ class SearchViewModel: ObservableObject {
     
     public func getZipCodes(zipCode: Int, radius: Int) {
         
+        _zipCodes = [ZipCode]()
         searchState = SearchState.searching
         
         _searchedZipCode = zipCode
-        _searchedRadius = radius
         
         zipCodeApi?.getZipCodes(zipCode: zipCode, distance: radius, completionHandler: {(zipCodeResults) in
             DispatchQueue.main.async {

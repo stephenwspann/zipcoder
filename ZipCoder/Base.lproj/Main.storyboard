@@ -17,57 +17,72 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WW8-4A-N5h">
-                                <rect key="frame" x="20" y="88" width="374" height="60"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="60" id="O3s-jO-W0T"/>
-                                </constraints>
-                                <string key="text">Enter a zip code and radius in kilometers 
-to search nearby zip codes.</string>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="T9j-mt-iXu">
-                                <rect key="frame" x="0.0" y="148" width="414" height="60"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="p4u-DJ-Rzz">
+                                <rect key="frame" x="0.0" y="44" width="414" height="250"/>
                                 <subviews>
-                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Zip Code" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="h9X-Gn-aD9">
-                                        <rect key="frame" x="20" y="8" width="140" height="34"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WW8-4A-N5h">
+                                        <rect key="frame" x="20" y="0.0" width="395" height="60"/>
                                         <constraints>
-                                            <constraint firstAttribute="width" constant="140" id="xGm-Xa-kUF"/>
+                                            <constraint firstAttribute="height" constant="60" id="O3s-jO-W0T"/>
                                         </constraints>
-                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
-                                    </textField>
-                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Distance (KM)" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="NjA-Vv-gL8">
-                                        <rect key="frame" x="180" y="8" width="100" height="34"/>
+                                        <string key="text">Enter a starting zip code and a distance
+in km to search for nearby zip codes.</string>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="T9j-mt-iXu">
+                                        <rect key="frame" x="0.0" y="80" width="414" height="60"/>
+                                        <subviews>
+                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Zip Code" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="h9X-Gn-aD9">
+                                                <rect key="frame" x="20" y="8" width="140" height="34"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="140" id="xGm-Xa-kUF"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
+                                            </textField>
+                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Distance (KM)" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="NjA-Vv-gL8">
+                                                <rect key="frame" x="180" y="8" width="100" height="34"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="100" id="KNz-yQ-nrM"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
+                                            </textField>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jqk-2e-Bmg">
+                                                <rect key="frame" x="300" y="8" width="48" height="30"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="48" id="P9d-bk-AnJ"/>
+                                                    <constraint firstAttribute="height" constant="30" id="gmr-De-RL5"/>
+                                                </constraints>
+                                                <state key="normal" title="Search"/>
+                                            </button>
+                                        </subviews>
+                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                         <constraints>
-                                            <constraint firstAttribute="width" constant="100" id="KNz-yQ-nrM"/>
+                                            <constraint firstAttribute="bottom" secondItem="jqk-2e-Bmg" secondAttribute="bottom" constant="22" id="2bG-6x-sXN"/>
+                                            <constraint firstItem="NjA-Vv-gL8" firstAttribute="leading" secondItem="h9X-Gn-aD9" secondAttribute="trailing" constant="20" id="AXr-tE-aLf"/>
+                                            <constraint firstAttribute="height" constant="60" id="BAD-P5-VG1"/>
+                                            <constraint firstAttribute="bottom" secondItem="h9X-Gn-aD9" secondAttribute="bottom" constant="18" id="LyE-Jg-fw0"/>
+                                            <constraint firstItem="h9X-Gn-aD9" firstAttribute="leading" secondItem="T9j-mt-iXu" secondAttribute="leading" constant="20" id="OgR-jW-P1k"/>
+                                            <constraint firstItem="jqk-2e-Bmg" firstAttribute="leading" secondItem="NjA-Vv-gL8" secondAttribute="trailing" constant="20" id="Q9M-gz-Gz8"/>
+                                            <constraint firstItem="jqk-2e-Bmg" firstAttribute="top" secondItem="T9j-mt-iXu" secondAttribute="top" constant="8" id="cFK-yc-mpc"/>
+                                            <constraint firstItem="NjA-Vv-gL8" firstAttribute="top" secondItem="T9j-mt-iXu" secondAttribute="top" constant="8" id="f7G-cA-pHv"/>
+                                            <constraint firstAttribute="bottom" secondItem="NjA-Vv-gL8" secondAttribute="bottom" constant="18" id="lti-HJ-EZt"/>
+                                            <constraint firstItem="h9X-Gn-aD9" firstAttribute="top" secondItem="T9j-mt-iXu" secondAttribute="top" constant="8" id="wMU-3J-EL0"/>
                                         </constraints>
-                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
-                                    </textField>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jqk-2e-Bmg">
-                                        <rect key="frame" x="300" y="8" width="48" height="30"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" constant="48" id="P9d-bk-AnJ"/>
-                                            <constraint firstAttribute="height" constant="30" id="gmr-De-RL5"/>
-                                        </constraints>
-                                        <state key="normal" title="Search"/>
-                                    </button>
+                                    </view>
                                 </subviews>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <constraints>
-                                    <constraint firstAttribute="bottom" secondItem="jqk-2e-Bmg" secondAttribute="bottom" constant="22" id="2bG-6x-sXN"/>
-                                    <constraint firstItem="NjA-Vv-gL8" firstAttribute="leading" secondItem="h9X-Gn-aD9" secondAttribute="trailing" constant="20" id="AXr-tE-aLf"/>
-                                    <constraint firstAttribute="height" constant="60" id="BAD-P5-VG1"/>
-                                    <constraint firstAttribute="bottom" secondItem="h9X-Gn-aD9" secondAttribute="bottom" constant="18" id="LyE-Jg-fw0"/>
-                                    <constraint firstItem="h9X-Gn-aD9" firstAttribute="leading" secondItem="T9j-mt-iXu" secondAttribute="leading" constant="20" id="OgR-jW-P1k"/>
-                                    <constraint firstItem="jqk-2e-Bmg" firstAttribute="leading" secondItem="NjA-Vv-gL8" secondAttribute="trailing" constant="20" id="Q9M-gz-Gz8"/>
-                                    <constraint firstItem="jqk-2e-Bmg" firstAttribute="top" secondItem="T9j-mt-iXu" secondAttribute="top" constant="8" id="cFK-yc-mpc"/>
-                                    <constraint firstItem="NjA-Vv-gL8" firstAttribute="top" secondItem="T9j-mt-iXu" secondAttribute="top" constant="8" id="f7G-cA-pHv"/>
-                                    <constraint firstAttribute="bottom" secondItem="NjA-Vv-gL8" secondAttribute="bottom" constant="18" id="lti-HJ-EZt"/>
-                                    <constraint firstItem="h9X-Gn-aD9" firstAttribute="top" secondItem="T9j-mt-iXu" secondAttribute="top" constant="8" id="wMU-3J-EL0"/>
+                                    <constraint firstItem="WW8-4A-N5h" firstAttribute="top" secondItem="p4u-DJ-Rzz" secondAttribute="top" id="0Ua-q1-FeC"/>
+                                    <constraint firstAttribute="height" constant="250" id="B3M-oi-ndy"/>
+                                    <constraint firstItem="WW8-4A-N5h" firstAttribute="leading" secondItem="p4u-DJ-Rzz" secondAttribute="leading" constant="20" symbolic="YES" id="Bmb-JH-XZQ"/>
+                                    <constraint firstAttribute="trailing" secondItem="WW8-4A-N5h" secondAttribute="trailing" id="YP1-Rw-2oK"/>
+                                    <constraint firstItem="T9j-mt-iXu" firstAttribute="top" secondItem="WW8-4A-N5h" secondAttribute="bottom" constant="20" id="Yum-J6-4sC"/>
+                                    <constraint firstItem="T9j-mt-iXu" firstAttribute="leading" secondItem="p4u-DJ-Rzz" secondAttribute="leading" id="bq5-xd-Pnl"/>
+                                    <constraint firstAttribute="trailing" secondItem="T9j-mt-iXu" secondAttribute="trailing" id="zkZ-vy-Q2A"/>
                                 </constraints>
                             </view>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="UGP-LG-3Gv">
@@ -81,30 +96,29 @@ to search nearby zip codes.</string>
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="44.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Zip" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hLm-Ey-upY">
-                                                    <rect key="frame" x="20" y="0.0" width="100" height="44.5"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Zip" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hLm-Ey-upY">
+                                                    <rect key="frame" x="20" y="0.0" width="60" height="44.5"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="width" constant="100" id="2t0-i7-ykw"/>
                                                         <constraint firstAttribute="height" constant="44" id="BGk-md-Jhs"/>
+                                                        <constraint firstAttribute="width" constant="60" id="vpa-Ja-4dE"/>
                                                     </constraints>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="City, State" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="j4O-My-ife">
-                                                    <rect key="frame" x="120" y="0.0" width="174" height="44.5"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="City, State" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="j4O-My-ife">
+                                                    <rect key="frame" x="100" y="0.0" width="174" height="44.5"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="44" id="Mrj-Ie-MeE"/>
-                                                        <constraint firstAttribute="width" constant="174" id="eg7-ui-pob"/>
                                                     </constraints>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Distance" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Xbd-cY-8GY">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Distance" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Xbd-cY-8GY">
                                                     <rect key="frame" x="294" y="0.0" width="100" height="44.5"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="width" constant="100" id="VWr-hS-OVO"/>
+                                                        <constraint firstAttribute="width" constant="100" id="iS0-w6-ESY"/>
                                                         <constraint firstAttribute="height" constant="44" id="yx0-Ui-sfr"/>
                                                     </constraints>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -114,10 +128,11 @@ to search nearby zip codes.</string>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstAttribute="trailing" secondItem="Xbd-cY-8GY" secondAttribute="trailing" constant="20" symbolic="YES" id="0Tn-oD-hqU"/>
+                                                <constraint firstItem="Xbd-cY-8GY" firstAttribute="leading" secondItem="j4O-My-ife" secondAttribute="trailing" constant="20" id="2gp-Hg-NUo"/>
                                                 <constraint firstItem="hLm-Ey-upY" firstAttribute="top" secondItem="Byv-WV-eCb" secondAttribute="top" id="D5V-jv-CxQ"/>
-                                                <constraint firstItem="j4O-My-ife" firstAttribute="centerX" secondItem="Byv-WV-eCb" secondAttribute="centerX" id="JKQ-R2-0Vr"/>
                                                 <constraint firstItem="j4O-My-ife" firstAttribute="top" secondItem="Byv-WV-eCb" secondAttribute="top" id="OGa-ok-Phb"/>
                                                 <constraint firstItem="Xbd-cY-8GY" firstAttribute="top" secondItem="Byv-WV-eCb" secondAttribute="top" id="Ppl-oj-WFI"/>
+                                                <constraint firstItem="j4O-My-ife" firstAttribute="leading" secondItem="hLm-Ey-upY" secondAttribute="trailing" constant="20" id="WeB-Wz-r31"/>
                                                 <constraint firstAttribute="bottom" secondItem="hLm-Ey-upY" secondAttribute="bottom" id="cP2-TB-Zgg"/>
                                                 <constraint firstAttribute="bottom" secondItem="Xbd-cY-8GY" secondAttribute="bottom" id="eCX-iW-bte"/>
                                                 <constraint firstAttribute="bottom" secondItem="j4O-My-ife" secondAttribute="bottom" id="eUh-gd-XFk"/>
@@ -137,20 +152,18 @@ to search nearby zip codes.</string>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="txe-KJ-38f" firstAttribute="trailing" secondItem="UGP-LG-3Gv" secondAttribute="trailing" id="2SX-Qm-DHS"/>
-                            <constraint firstItem="txe-KJ-38f" firstAttribute="trailing" secondItem="T9j-mt-iXu" secondAttribute="trailing" id="5Eh-Rw-bHU"/>
-                            <constraint firstItem="T9j-mt-iXu" firstAttribute="leading" secondItem="txe-KJ-38f" secondAttribute="leading" id="DP3-C9-K3p"/>
                             <constraint firstItem="UGP-LG-3Gv" firstAttribute="leading" secondItem="txe-KJ-38f" secondAttribute="leading" id="GD6-HU-m9Y"/>
-                            <constraint firstItem="WW8-4A-N5h" firstAttribute="leading" secondItem="txe-KJ-38f" secondAttribute="leading" constant="20" id="Khy-sb-qgq"/>
-                            <constraint firstItem="WW8-4A-N5h" firstAttribute="top" secondItem="txe-KJ-38f" secondAttribute="top" constant="44" id="OLs-ei-syI"/>
+                            <constraint firstItem="txe-KJ-38f" firstAttribute="trailing" secondItem="p4u-DJ-Rzz" secondAttribute="trailing" id="J0t-0w-kQd"/>
+                            <constraint firstItem="p4u-DJ-Rzz" firstAttribute="leading" secondItem="txe-KJ-38f" secondAttribute="leading" id="MOq-aN-owb"/>
                             <constraint firstItem="txe-KJ-38f" firstAttribute="bottom" secondItem="UGP-LG-3Gv" secondAttribute="bottom" id="Qur-pZ-bRD"/>
-                            <constraint firstItem="T9j-mt-iXu" firstAttribute="top" secondItem="txe-KJ-38f" secondAttribute="top" constant="104" id="Se9-9g-Lyq"/>
                             <constraint firstItem="UGP-LG-3Gv" firstAttribute="top" secondItem="txe-KJ-38f" secondAttribute="top" constant="208" id="Wl6-XX-mdv"/>
-                            <constraint firstItem="txe-KJ-38f" firstAttribute="trailing" secondItem="WW8-4A-N5h" secondAttribute="trailing" constant="20" id="tse-AD-Uii"/>
+                            <constraint firstItem="p4u-DJ-Rzz" firstAttribute="top" secondItem="txe-KJ-38f" secondAttribute="top" id="o8P-YI-vNd"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Search" id="MWj-Mz-PiI"/>
                     <connections>
                         <outlet property="distanceField" destination="NjA-Vv-gL8" id="LhW-53-L4B"/>
+                        <outlet property="instructionsLabel" destination="WW8-4A-N5h" id="2lL-ng-0G6"/>
                         <outlet property="searchButton" destination="jqk-2e-Bmg" id="BKB-8c-FTe"/>
                         <outlet property="zipCodeField" destination="h9X-Gn-aD9" id="jOw-1d-Gk8"/>
                         <outlet property="zipCodeTable" destination="UGP-LG-3Gv" id="UWF-b0-eUG"/>

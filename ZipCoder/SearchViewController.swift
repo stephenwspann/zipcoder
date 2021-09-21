@@ -10,6 +10,7 @@ import Combine
 
 class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
+    @IBOutlet var instructionsLabel: UILabel!
     @IBOutlet var zipCodeField: UITextField!
     @IBOutlet var distanceField: UITextField!
     @IBOutlet var searchButton: UIButton!
@@ -28,6 +29,10 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
         // set up table
         zipCodeTable.delegate = self
         zipCodeTable.dataSource = self
+        
+        // localized strings
+        instructionsLabel.text = NSLocalizedString("SEARCH_INSTRUCTIONS", comment: "")
+        searchButton.setTitle(NSLocalizedString("SEARCH_BUTTON_LABEL", comment: ""), for: .normal)
         
         // observe model
         viewModel.$searchState.sink { searchState in
