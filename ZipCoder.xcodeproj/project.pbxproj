@@ -116,11 +116,11 @@
 				F13F181A26F94C20009A6EDB /* SearchViewModel.swift */,
 				F13F181126F92F4C009A6EDB /* ZipCodeApi.swift */,
 				F145A52B26F9592500DF51E4 /* ZipCodeApiResponse.swift */,
+				F145A52D26FA1FB400DF51E4 /* ZipCodeCell.swift */,
 				F1C10FCE26F92E8400FF5A20 /* Main.storyboard */,
 				F1C10FD126F92E8500FF5A20 /* Assets.xcassets */,
 				F1C10FD326F92E8500FF5A20 /* LaunchScreen.storyboard */,
 				F1C10FD626F92E8500FF5A20 /* Info.plist */,
-				F145A52D26FA1FB400DF51E4 /* ZipCodeCell.swift */,
 			);
 			path = ZipCoder;
 			sourceTree = "<group>";

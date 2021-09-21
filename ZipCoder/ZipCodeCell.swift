@@ -5,7 +5,7 @@
 //  Created by Stephen Spann on 9/21/21.
 //
 
-import SwiftUI
+import UIKit
 
 class ZipCodeCell: UITableViewCell {
 

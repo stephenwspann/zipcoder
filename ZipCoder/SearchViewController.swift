@@ -12,18 +12,14 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
     
     var zipCodeApi: ZipCodeApi?
     
-    var zipCodes: [ZipCodeJson] = [ZipCodeJson]()
-    
     var viewModel: SearchViewModel! = SearchViewModel()
     
     @IBOutlet var zipCodeField: UITextField!
     @IBOutlet var distanceField: UITextField!
     @IBOutlet var searchButton: UIButton!
-    
-
-    private var cancellable = Set<AnyCancellable>()
-    
     @IBOutlet var zipCodeTable: UITableView!
+    
+    private var cancellable = Set<AnyCancellable>()
 
     override func viewDidLoad() {
         
@@ -60,44 +56,33 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
         
         searchButton.addTarget(self, action: #selector(searchTapped), for: .touchUpInside)
         
-        /*
-        garminDriver.$devices.sink { newDevices in
-            // need an order for the table
-            self.garminDevices = Array(newDevices.values)
+        viewModel.$zipCodes.sink { zipCodes in
+            DispatchQueue.main.async {
+                self.zipCodeTable.reloadData()
+            }
         }.store(in: &cancellable)
- */
+        
     }
     
     @objc func searchTapped() {
         zipCodeApi?.getZipCodes(zipCode: 30308, distance: 5, completionHandler: {(zipCodeResults) in
-            
-            self.zipCodes = zipCodeResults
-            
-            DispatchQueue.main.async {
-                self.zipCodeTable.reloadData()
-            }
-            
-            //for zip in zipCodeResults {
-            //    print(zip.zip_code)
-            //}
+            self.viewModel.zipCodes = zipCodeResults
         })
         
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return zipCodes.count
+        return viewModel.zipCodes.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        
         if let cell = tableView.dequeueReusableCell(withIdentifier: "zipCodeCell") as? ZipCodeCell {
-            let zipCode = zipCodes[indexPath.row]
+            let zipCode = viewModel.zipCodes[indexPath.row]
             cell.zipCode.text = zipCode.zip_code
             cell.cityState.text = zipCode.city + ", " + zipCode.state
             cell.distance.text = String(zipCode.distance) + " km"
             return cell
         }
-
         return UITableViewCell()
     }
 
