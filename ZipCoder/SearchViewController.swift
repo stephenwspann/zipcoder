@@ -17,6 +17,8 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
     
     private var viewModel: SearchViewModel! = SearchViewModel()
     
+    private var _zipCodes = [ZipCode]()
+    
     private var cancellable = Set<AnyCancellable>()
 
     override func viewDidLoad() {
@@ -46,9 +48,8 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
         }.store(in: &cancellable)
  
         viewModel.$filteredZipCodes.sink { zipCodes in
-            DispatchQueue.main.async {
-                self.zipCodeTable.reloadData()
-            }
+            self._zipCodes = zipCodes
+            self.zipCodeTable.reloadData()
         }.store(in: &cancellable)
 
         // add events
@@ -61,12 +62,12 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return viewModel.filteredZipCodes.count
+        return _zipCodes.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if let cell = tableView.dequeueReusableCell(withIdentifier: "zipCodeCell") as? ZipCodeCell {
-            let zipCode = viewModel.filteredZipCodes[indexPath.row]
+            let zipCode = _zipCodes[indexPath.row]
             cell.zipCode.text = zipCode.zipCode
             cell.cityState.text = zipCode.city + ", " + zipCode.state
             cell.distance.text = String(zipCode.distance) + " km"

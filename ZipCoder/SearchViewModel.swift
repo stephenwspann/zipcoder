@@ -50,9 +50,8 @@ class SearchViewModel: ObservableObject {
         _searchedRadius = radius
         
         zipCodeApi?.getZipCodes(zipCode: zipCode, distance: radius, completionHandler: {(zipCodeResults) in
-            self._zipCodes = zipCodeResults
-            
             DispatchQueue.main.async {
+                self._zipCodes = zipCodeResults
                 self.searchState = SearchState.completed
             }
         })
