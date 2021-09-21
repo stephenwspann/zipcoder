@@ -10,14 +10,12 @@ import Combine
 
 class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
-    var zipCodeApi: ZipCodeApi?
-    
-    var viewModel: SearchViewModel! = SearchViewModel()
-    
     @IBOutlet var zipCodeField: UITextField!
     @IBOutlet var distanceField: UITextField!
     @IBOutlet var searchButton: UIButton!
     @IBOutlet var zipCodeTable: UITableView!
+    
+    private var viewModel: SearchViewModel! = SearchViewModel()
     
     private var cancellable = Set<AnyCancellable>()
 
@@ -25,16 +23,11 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
         
         super.viewDidLoad()
         
+        // set up table
         zipCodeTable.delegate = self
         zipCodeTable.dataSource = self
         
-        do {
-            try zipCodeApi = ZipCodeApi()
-        } catch {
-            
-        }
-        
-        
+        // observe model
         viewModel.$searchState.sink { searchState in
             switch(searchState) {
             case .initialState:
@@ -52,40 +45,37 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
             }
         }.store(in: &cancellable)
  
-
-        
-        searchButton.addTarget(self, action: #selector(searchTapped), for: .touchUpInside)
-        
-        viewModel.$zipCodes.sink { zipCodes in
+        viewModel.$filteredZipCodes.sink { zipCodes in
             DispatchQueue.main.async {
                 self.zipCodeTable.reloadData()
             }
         }.store(in: &cancellable)
+
+        // add events
+        searchButton.addTarget(self, action: #selector(searchTapped), for: .touchUpInside)
         
     }
     
     @objc func searchTapped() {
-        zipCodeApi?.getZipCodes(zipCode: 30308, distance: 5, completionHandler: {(zipCodeResults) in
-            self.viewModel.zipCodes = zipCodeResults
-        })
-        
+        self.viewModel.getZipCodes(zipCode: Int(zipCodeField.text!)!, radius: Int(distanceField.text!)!)
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return viewModel.zipCodes.count
+        return viewModel.filteredZipCodes.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if let cell = tableView.dequeueReusableCell(withIdentifier: "zipCodeCell") as? ZipCodeCell {
-            let zipCode = viewModel.zipCodes[indexPath.row]
+            let zipCode = viewModel.filteredZipCodes[indexPath.row]
             cell.zipCode.text = zipCode.zipCode
             cell.cityState.text = zipCode.city + ", " + zipCode.state
             cell.distance.text = String(zipCode.distance) + " km"
             return cell
+        } else {
+            // return empty cell, log error
+            return UITableViewCell()
         }
-        
-        // return empty cell on error
-        return UITableViewCell()
+
     }
 
 

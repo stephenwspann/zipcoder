@@ -14,12 +14,48 @@ enum SearchState {
 }
 
 class SearchViewModel: ObservableObject {
+    
+    var zipCodeApi: ZipCodeApi?
 
     @Published var searchState: SearchState = SearchState.initialState
     
-    @Published var zipCodes: [ZipCode] = [ZipCode]()
+    @Published var filteredZipCodes: [ZipCode] = [ZipCode]()
     
+    private var _searchedZipCode: Int = 0
+    private var _searchedRadius: Int = 0
+    
+    private var _zipCodes = [ZipCode]() {
+        didSet {
+            filteredZipCodes = _zipCodes.filter {
+                $0.zipCode != String(_searchedZipCode)
+            }
+        }
+    }
+
     public init() {
+        
+        do {
+            try zipCodeApi = ZipCodeApi()
+        } catch {
+            
+        }
+        
+    }
+    
+    public func getZipCodes(zipCode: Int, radius: Int) {
+        
+        searchState = SearchState.searching
+        
+        _searchedZipCode = zipCode
+        _searchedRadius = radius
+        
+        zipCodeApi?.getZipCodes(zipCode: zipCode, distance: radius, completionHandler: {(zipCodeResults) in
+            self._zipCodes = zipCodeResults
+            
+            DispatchQueue.main.async {
+                self.searchState = SearchState.completed
+            }
+        })
         
     }
 }
