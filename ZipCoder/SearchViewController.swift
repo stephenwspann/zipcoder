@@ -78,11 +78,13 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if let cell = tableView.dequeueReusableCell(withIdentifier: "zipCodeCell") as? ZipCodeCell {
             let zipCode = viewModel.zipCodes[indexPath.row]
-            cell.zipCode.text = zipCode.zip_code
+            cell.zipCode.text = zipCode.zipCode
             cell.cityState.text = zipCode.city + ", " + zipCode.state
             cell.distance.text = String(zipCode.distance) + " km"
             return cell
         }
+        
+        // return empty cell on error
         return UITableViewCell()
     }
 

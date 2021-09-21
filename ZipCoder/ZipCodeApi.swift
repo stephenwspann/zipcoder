@@ -17,13 +17,24 @@ class ZipCodeApi {
     
     var apiKey: String
     
+    // Keep snake_case json key values contained in this class
+    struct ZipCodeJson: Codable {
+        let zip_code: String
+        let distance: Float
+        let city: String
+        let state: String
+    }
+
+    struct ApiResponseJson: Codable {
+        let zip_codes: [ZipCodeJson]
+    }
+    
     init() throws {
         if let path = Bundle.main.path(forResource: "app_settings", ofType: "json") {
             do {
                 let data = try Data(contentsOf: URL(fileURLWithPath: path), options: .mappedIfSafe)
                 let jsonResult = try JSONSerialization.jsonObject(with: data, options: .mutableLeaves)
                 if let jsonResult = jsonResult as? Dictionary<String, AnyObject>, let key = jsonResult["ZIP_CODE_API_KEY"] as? String {
-                    print("key: " + key)
                     apiKey = key
                 } else {
                     throw ZipCodeApiError.jsonMissingApiKey
@@ -43,14 +54,12 @@ class ZipCodeApi {
         return url
     }
     
-    func getZipCodes(zipCode: Int, distance: Int, completionHandler: @escaping([ZipCodeJson]) -> Void) {
+    func getZipCodes(zipCode: Int, distance: Int, completionHandler: @escaping([ZipCode]) -> Void) {
         let url = getApiUrl(zipCode: zipCode, distance: distance)
-        
-        print("get zip codes!")
         
         let task = URLSession.shared.dataTask(with: url, completionHandler: { (data, response, error) in
             if let error = error {
-                print("Error with fetching films: \(error)")
+                print("Error with fetching api: \(error)")
                 return
             }
 
@@ -62,16 +71,19 @@ class ZipCodeApi {
 
             if let zipData = data {
 
-                do {
-                    if let decodedResponse = try? JSONDecoder().decode(ZipCodeApiResponse.self, from: zipData) {
-                        completionHandler(decodedResponse.zip_codes)
-                    } else {
-                        print("decode error 2")
+                if let decodedResponse = try? JSONDecoder().decode(ApiResponseJson.self, from: zipData) {
+                    
+                    // transform into a more iOS-friendly struct (camelCase)
+                    let zipCodes = decodedResponse.zip_codes.map { zip in
+                        ZipCode(zipCode: zip.zip_code, distance: zip.distance, city: zip.city, state: zip.state)
                     }
-
-                } catch let jsonError as NSError {
-                    print("JSON decode failed: \(jsonError.localizedDescription)")
+                    
+                    completionHandler(zipCodes)
+                    
+                } else {
+                    print("decode error 2")
                 }
+
             } else {
                 print("decode error")
                 
@@ -80,40 +92,5 @@ class ZipCodeApi {
         
         task.resume()
     }
-    
 
-    /*
-    
-    // NOTE: API Keys should not be in Git repositories or source code,
-    // including here to avoid errors publishing.
-    var apiKey: String
-    
-    init(apiKey: String) {
-        self.apiKey = apiKey
-    }
-    
-    // MARK: - Properties
-
-    private static var shared: ZipCodeApi = {
-        let networkManager = NetworkManager(baseURL: API.baseURL)
-        return networkManager
-    }()
-
-    // MARK: -
-
-    let baseURL: URL
-
-    // Initialization
-
-    private init(baseURL: URL) {
-        self.baseURL = baseURL
-    }
-
-    // MARK: - Accessors
-
-    class func shared() -> NetworkManager {
-        return sharedNetworkManager
-    }
- */
-    
 }

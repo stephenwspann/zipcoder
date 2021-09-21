@@ -17,7 +17,7 @@ class SearchViewModel: ObservableObject {
 
     @Published var searchState: SearchState = SearchState.initialState
     
-    @Published var zipCodes: [ZipCodeJson] = [ZipCodeJson]()
+    @Published var zipCodes: [ZipCode] = [ZipCode]()
     
     public init() {
         

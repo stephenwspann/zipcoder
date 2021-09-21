@@ -7,13 +7,9 @@
 
 import Foundation
 
-struct ZipCodeJson: Codable {
-    let zip_code: String
+struct ZipCode {
+    let zipCode: String
     let distance: Float
     let city: String
     let state: String
-}
-
-struct ZipCodeApiResponse: Codable {
-    var zip_codes: [ZipCodeJson]
 }
