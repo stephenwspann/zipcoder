@@ -35,50 +35,55 @@ in km to search for nearby zip codes.</string>
                                         <rect key="frame" x="0.0" y="80" width="414" height="60"/>
                                         <subviews>
                                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Zip Code" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="h9X-Gn-aD9">
-                                                <rect key="frame" x="20" y="8" width="140" height="34"/>
+                                                <rect key="frame" x="20" y="0.0" width="80" height="34"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="width" constant="140" id="xGm-Xa-kUF"/>
+                                                    <constraint firstAttribute="width" constant="80" id="xGm-Xa-kUF"/>
                                                 </constraints>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
                                             </textField>
                                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Distance (KM)" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="NjA-Vv-gL8">
-                                                <rect key="frame" x="180" y="8" width="100" height="34"/>
+                                                <rect key="frame" x="120" y="0.0" width="120" height="34"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="width" constant="100" id="KNz-yQ-nrM"/>
+                                                    <constraint firstAttribute="width" constant="120" id="KNz-yQ-nrM"/>
                                                 </constraints>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
                                             </textField>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jqk-2e-Bmg">
-                                                <rect key="frame" x="300" y="8" width="48" height="30"/>
+                                                <rect key="frame" x="260" y="0.0" width="48" height="30"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="width" constant="48" id="P9d-bk-AnJ"/>
                                                     <constraint firstAttribute="height" constant="30" id="gmr-De-RL5"/>
                                                 </constraints>
                                                 <state key="normal" title="Search"/>
                                             </button>
                                         </subviews>
-                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                        <color key="backgroundColor" systemColor="secondarySystemBackgroundColor"/>
                                         <constraints>
-                                            <constraint firstAttribute="bottom" secondItem="jqk-2e-Bmg" secondAttribute="bottom" constant="22" id="2bG-6x-sXN"/>
                                             <constraint firstItem="NjA-Vv-gL8" firstAttribute="leading" secondItem="h9X-Gn-aD9" secondAttribute="trailing" constant="20" id="AXr-tE-aLf"/>
                                             <constraint firstAttribute="height" constant="60" id="BAD-P5-VG1"/>
-                                            <constraint firstAttribute="bottom" secondItem="h9X-Gn-aD9" secondAttribute="bottom" constant="18" id="LyE-Jg-fw0"/>
                                             <constraint firstItem="h9X-Gn-aD9" firstAttribute="leading" secondItem="T9j-mt-iXu" secondAttribute="leading" constant="20" id="OgR-jW-P1k"/>
                                             <constraint firstItem="jqk-2e-Bmg" firstAttribute="leading" secondItem="NjA-Vv-gL8" secondAttribute="trailing" constant="20" id="Q9M-gz-Gz8"/>
-                                            <constraint firstItem="jqk-2e-Bmg" firstAttribute="top" secondItem="T9j-mt-iXu" secondAttribute="top" constant="8" id="cFK-yc-mpc"/>
-                                            <constraint firstItem="NjA-Vv-gL8" firstAttribute="top" secondItem="T9j-mt-iXu" secondAttribute="top" constant="8" id="f7G-cA-pHv"/>
-                                            <constraint firstAttribute="bottom" secondItem="NjA-Vv-gL8" secondAttribute="bottom" constant="18" id="lti-HJ-EZt"/>
-                                            <constraint firstItem="h9X-Gn-aD9" firstAttribute="top" secondItem="T9j-mt-iXu" secondAttribute="top" constant="8" id="wMU-3J-EL0"/>
+                                            <constraint firstItem="jqk-2e-Bmg" firstAttribute="top" secondItem="T9j-mt-iXu" secondAttribute="top" id="cFK-yc-mpc"/>
+                                            <constraint firstItem="NjA-Vv-gL8" firstAttribute="top" secondItem="T9j-mt-iXu" secondAttribute="top" id="f7G-cA-pHv"/>
+                                            <constraint firstItem="h9X-Gn-aD9" firstAttribute="top" secondItem="T9j-mt-iXu" secondAttribute="top" id="wMU-3J-EL0"/>
                                         </constraints>
                                     </view>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Message" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BJI-6u-PSe">
+                                        <rect key="frame" x="20" y="132" width="342" height="21"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
                                 </subviews>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <color key="backgroundColor" systemColor="secondarySystemBackgroundColor"/>
                                 <constraints>
                                     <constraint firstItem="WW8-4A-N5h" firstAttribute="top" secondItem="p4u-DJ-Rzz" secondAttribute="top" id="0Ua-q1-FeC"/>
+                                    <constraint firstItem="BJI-6u-PSe" firstAttribute="top" secondItem="T9j-mt-iXu" secondAttribute="bottom" id="0oB-v2-Lah"/>
                                     <constraint firstAttribute="height" constant="250" id="B3M-oi-ndy"/>
                                     <constraint firstItem="WW8-4A-N5h" firstAttribute="leading" secondItem="p4u-DJ-Rzz" secondAttribute="leading" constant="20" symbolic="YES" id="Bmb-JH-XZQ"/>
+                                    <constraint firstAttribute="trailing" secondItem="BJI-6u-PSe" secondAttribute="trailing" constant="20" id="TxZ-T8-2JK"/>
+                                    <constraint firstItem="BJI-6u-PSe" firstAttribute="leading" secondItem="p4u-DJ-Rzz" secondAttribute="leading" constant="20" id="VfU-Gg-NSW"/>
                                     <constraint firstAttribute="trailing" secondItem="WW8-4A-N5h" secondAttribute="trailing" id="YP1-Rw-2oK"/>
                                     <constraint firstItem="T9j-mt-iXu" firstAttribute="top" secondItem="WW8-4A-N5h" secondAttribute="bottom" constant="20" id="Yum-J6-4sC"/>
                                     <constraint firstItem="T9j-mt-iXu" firstAttribute="leading" secondItem="p4u-DJ-Rzz" secondAttribute="leading" id="bq5-xd-Pnl"/>
@@ -164,6 +169,7 @@ in km to search for nearby zip codes.</string>
                     <connections>
                         <outlet property="distanceField" destination="NjA-Vv-gL8" id="LhW-53-L4B"/>
                         <outlet property="instructionsLabel" destination="WW8-4A-N5h" id="2lL-ng-0G6"/>
+                        <outlet property="messageLabel" destination="BJI-6u-PSe" id="1Hw-oL-5Nm"/>
                         <outlet property="searchButton" destination="jqk-2e-Bmg" id="BKB-8c-FTe"/>
                         <outlet property="zipCodeField" destination="h9X-Gn-aD9" id="jOw-1d-Gk8"/>
                         <outlet property="zipCodeTable" destination="UGP-LG-3Gv" id="UWF-b0-eUG"/>
@@ -175,6 +181,9 @@ in km to search for nearby zip codes.</string>
         </scene>
     </scenes>
     <resources>
+        <systemColor name="secondarySystemBackgroundColor">
+            <color red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

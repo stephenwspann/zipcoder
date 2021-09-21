@@ -14,6 +14,7 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
     @IBOutlet var zipCodeField: UITextField!
     @IBOutlet var distanceField: UITextField!
     @IBOutlet var searchButton: UIButton!
+    @IBOutlet var messageLabel: UILabel!
     @IBOutlet var zipCodeTable: UITableView!
     
     private var viewModel: SearchViewModel! = SearchViewModel()
@@ -33,6 +34,8 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
         // localized strings
         instructionsLabel.text = NSLocalizedString("SEARCH_INSTRUCTIONS", comment: "")
         searchButton.setTitle(NSLocalizedString("SEARCH_BUTTON_LABEL", comment: ""), for: .normal)
+        zipCodeField.placeholder = NSLocalizedString("ZIP_CODE_FIELD_PLACEHOLDER", comment: "")
+        distanceField.placeholder = NSLocalizedString("DISTANCE_FIELD_PLACEHOLDER", comment: "")
         
         // observe model
         viewModel.$searchState.sink { searchState in
@@ -53,8 +56,17 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
         }.store(in: &cancellable)
  
         viewModel.$filteredZipCodes.sink { zipCodes in
-            self._zipCodes = zipCodes
-            self.zipCodeTable.reloadData()
+            
+            if (self.viewModel.searchState != .initialState) {
+                self._zipCodes = zipCodes
+                self.zipCodeTable.reloadData()
+                if (zipCodes.count > 0) {
+                    let formatString = NSLocalizedString("FOUND_X_RESULTS", comment: "")
+                    self.messageLabel.text = String.localizedStringWithFormat(formatString, zipCodes.count)
+                } else {
+                    self.messageLabel.text = NSLocalizedString("NO_RESULTS_FOUND", comment: "")
+                }
+            }
         }.store(in: &cancellable)
 
         // add events

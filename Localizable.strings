@@ -1,2 +1,6 @@
 "SEARCH_INSTRUCTIONS" = "Enter a starting zip code and a distance \nin km to search for nearby zip codes.";
 "SEARCH_BUTTON_LABEL" = "Search";
+"ZIP_CODE_FIELD_PLACEHOLDER" = "Zip Code";
+"DISTANCE_FIELD_PLACEHOLDER" = "Distance (km)";
+"FOUND_X_RESULTS" = "Found %d results.";
+"NO_RESULTS_FOUND" = "No results found.";
