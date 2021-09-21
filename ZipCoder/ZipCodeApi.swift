@@ -43,7 +43,7 @@ class ZipCodeApi {
         return url
     }
     
-    func getZipCodes(zipCode: Int, distance: Int, completionHandler: @escaping([ZipCode]) -> Void) {
+    func getZipCodes(zipCode: Int, distance: Int, completionHandler: @escaping([ZipCodeJson]) -> Void) {
         let url = getApiUrl(zipCode: zipCode, distance: distance)
         
         print("get zip codes!")

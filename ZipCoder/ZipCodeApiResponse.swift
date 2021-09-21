@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct ZipCode: Codable {
+struct ZipCodeJson: Codable {
     let zip_code: String
     let distance: Float
     let city: String
@@ -15,5 +15,5 @@ struct ZipCode: Codable {
 }
 
 struct ZipCodeApiResponse: Codable {
-    var zip_codes: [ZipCode]
+    var zip_codes: [ZipCodeJson]
 }
