@@ -7,23 +7,23 @@
 
 import Foundation
 
+// Keep snake_case json key values contained in this class
+fileprivate struct ZipCodeJson: Codable {
+    let zip_code: String
+    let distance: Float
+    let city: String
+    let state: String
+}
+
+fileprivate struct ApiResponseJson: Codable {
+    let zip_codes: [ZipCodeJson]
+}
+
 class ZipCodeApi {
     
     // NOTE: It's not great to have API keys in the Git repository.
     // In production, this could be loaded from an external JSON file.
     let apiKey: String = "CGk1ezxPVm53prDhs1LExkQu6xOnYMkMfUtgkVZhXoTeLfQku9zaqdXTvANfY4YH"
-    
-    // Keep snake_case json key values contained in this class
-    struct ZipCodeJson: Codable {
-        let zip_code: String
-        let distance: Float
-        let city: String
-        let state: String
-    }
-
-    struct ApiResponseJson: Codable {
-        let zip_codes: [ZipCodeJson]
-    }
     
     // format: https://www.zipcodeapi.com/rest/<api_key>/radius.<format>/<zip_code>/<distance>/<units>
     func getApiUrl(zipCode: Int, distance: Int) -> URL {
