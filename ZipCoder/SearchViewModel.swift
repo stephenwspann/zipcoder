@@ -9,54 +9,56 @@ import Foundation
 
 class SearchViewModel {
 
-    var zipCodeApi = ZipCodeApi()
-
     @Published var searchState: SearchState = SearchState.initialState
-
     @Published var filteredZipCodes: [ZipCode] = [ZipCode]()
 
-    private var _searchedZipCode = ""
-
-    private var _zipCodes = [ZipCode]() {
+    private var zipCodeApi = ZipCodeApi()
+    private var searchedZipCode = ""
+    private var zipCodes = [ZipCode]() {
         didSet {
-            filteredZipCodes = _zipCodes.filter {
-                $0.zipCode != _searchedZipCode
+            filteredZipCodes = zipCodes.filter {
+                $0.zipCode != searchedZipCode
             }.sorted {
                 $0.distanceSortable < $1.distanceSortable
             }
         }
     }
 
-    func zipCodeIsValid(_ zipCode: String) -> Bool {
+    private func zipCodeIsValid(_ zipCode: String) -> Bool {
         return zipCode.range(of: #"^[0-9]{5}$"#, options: .regularExpression) != nil
     }
 
-    func distanceIsValid(_ distance: Int) -> Bool {
+    private func distanceIsValid(_ distance: String) -> Bool {
+        
+        guard let distanceValue = Int(distance) else {
+            return false
+        }
         // The API is capped at 500 miles (~805 km)
-        return distance > 0 && distance <= 805
+        return distanceValue > 0 && distanceValue <= 805
     }
 
-    public func getZipCodes(zipCode: String?, distance: String?) {
+    func getZipCodes(zipCode: String?, distance: String?) {
+        
+        // clear previous results on both errors and searches
+        zipCodes = [ZipCode]()
 
-        guard let zipCodeVal = Int(zipCode!), zipCodeIsValid(zipCode!) else {
+        guard let zipCode = zipCode, zipCodeIsValid(zipCode) else {
             searchState = SearchState.zipCodeError
             return
         }
 
-        guard let distanceVal = Int(distance!), distanceIsValid(distanceVal) else {
+        guard let distance = distance, distanceIsValid(distance) else {
             searchState = SearchState.distanceError
             return
         }
 
-        _zipCodes = [ZipCode]()
         searchState = SearchState.searching
+        searchedZipCode = zipCode
 
-        _searchedZipCode = String(zipCodeVal)
-
-        zipCodeApi.getZipCodes(zipCode: zipCodeVal, distance: distanceVal, completionHandler: { (zipCodeResults) in
+        zipCodeApi.getZipCodes(zipCode: zipCode, distance: distance, completionHandler: { (zipCodeResults) in
             DispatchQueue.main.async {
-                self._zipCodes = zipCodeResults
                 self.searchState = SearchState.completed
+                self.zipCodes = zipCodeResults
             }
         })
 

@@ -9,7 +9,7 @@ import UIKit
 
 extension UITextField {
 
-    public func setErrorState(hasError: Bool) {
+    public func hasError(_ hasError: Bool) {
 
         if hasError {
             layer.borderWidth = 1

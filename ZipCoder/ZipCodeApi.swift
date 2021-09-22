@@ -23,16 +23,17 @@ class ZipCodeApi {
 
     // NOTE: It's not great to have API keys in the Git repository.
     // In production, this could be loaded from an external JSON file.
-    let apiKey: String = "CGk1ezxPVm53prDhs1LExkQu6xOnYMkMfUtgkVZhXoTeLfQku9zaqdXTvANfY4YH"
+    private let apiKey: String = "CGk1ezxPVm53prDhs1LExkQu6xOnYMkMfUtgkVZhXoTeLfQku9zaqdXTvANfY4YH"
 
     // format: https://www.zipcodeapi.com/rest/<api_key>/radius.<format>/<zip_code>/<distance>/<units>
-    func getApiUrl(zipCode: Int, distance: Int) -> URL {
-        let urlString = "https://www.zipcodeapi.com/rest/" + apiKey + "/radius.json/" + String(zipCode) + "/" + String(distance) + "/km"
+    private func getApiUrl(zipCode: String, distance: String) -> URL {
+        let urlString = "https://www.zipcodeapi.com/rest/" + apiKey + "/radius.json/" + zipCode + "/" + distance + "/km"
         let url = URL(string: urlString)!
         return url
     }
 
-    func getZipCodes(zipCode: Int, distance: Int, completionHandler: @escaping([ZipCode]) -> Void) {
+    func getZipCodes(zipCode: String, distance: String, completionHandler: @escaping([ZipCode]) -> Void) {
+        
         let url = getApiUrl(zipCode: zipCode, distance: distance)
 
         let task = URLSession.shared.dataTask(with: url, completionHandler: { (data, response, error) in

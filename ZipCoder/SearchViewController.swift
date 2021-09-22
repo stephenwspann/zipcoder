@@ -20,9 +20,7 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
     @IBOutlet var zipCodeTable: UITableView!
 
     private var viewModel: SearchViewModel! = SearchViewModel()
-
-    private var _zipCodes = [ZipCode]()
-
+    private var zipCodes = [ZipCode]()
     private var cancellable = Set<AnyCancellable>()
 
     // MARK: - UIViewController lifecycle methods
@@ -48,30 +46,31 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
         // observe model
         viewModel.$searchState.sink { searchState in
 
+            // default state
             self.resetFormErrors()
+            self.setFormEnabled(true)
 
             switch(searchState) {
             case .initialState:
-                self.setFormEnabled(enabled: true)
                 self.messageLabel.text = ""
             case .zipCodeError:
-                self.zipCodeField.setErrorState(hasError: true)
+                self.zipCodeField.hasError(true)
                 self.messageLabel.text = NSLocalizedString("PLEASE_ENTER_VALID_ZIP", comment: "")
             case .distanceError:
-                self.distanceField.setErrorState(hasError: true)
+                self.distanceField.hasError(true)
                 self.messageLabel.text = NSLocalizedString("PLEASE_ENTER_VALID_DISTANCE", comment: "")
             case .searching:
-                self.setFormEnabled(enabled: false)
+                self.setFormEnabled(false)
                 self.messageLabel.text = NSLocalizedString("FETCHING_RESULTS", comment: "")
             case .completed:
-                self.setFormEnabled(enabled: true)
+                break
             }
         }.store(in: &cancellable)
 
         viewModel.$filteredZipCodes.sink { zipCodes in
 
-            if (self.viewModel.searchState != .initialState) {
-                self._zipCodes = zipCodes
+            if self.viewModel.searchState == .completed {
+                self.zipCodes = zipCodes
                 self.zipCodeTable.reloadData()
                 if (zipCodes.count > 0) {
                     let formatString = NSLocalizedString("FOUND_X_RESULTS", comment: "")
@@ -87,15 +86,15 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
 
     }
 
-    func setFormEnabled(enabled: Bool) {
+    private func setFormEnabled(_ enabled: Bool) {
         zipCodeField.isEnabled = enabled
         distanceField.isEnabled = enabled
         searchButton.isEnabled = enabled
     }
 
-    func resetFormErrors() {
-        zipCodeField.setErrorState(hasError: false)
-        distanceField.setErrorState(hasError: false)
+    private func resetFormErrors() {
+        zipCodeField.hasError(false)
+        distanceField.hasError(false)
     }
 
     @objc func searchTapped() {
@@ -105,16 +104,16 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
     // MARK: - UITableViewDataSource methods
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return _zipCodes.count
+        return zipCodes.count
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if let cell = tableView.dequeueReusableCell(withIdentifier: "zipCodeCell") as? ZipCodeCell {
-            cell.zipCode = _zipCodes[indexPath.row]
+            cell.zipCode = zipCodes[indexPath.row]
             cell.selectionStyle = .none
             return cell
         } else {
-            // return empty cell, log error
+            // return an empty cell
             return UITableViewCell()
         }
 

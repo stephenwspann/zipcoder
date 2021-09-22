@@ -13,7 +13,7 @@
 		F145A52E26FA1FB400DF51E4 /* ZipCodeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F145A52D26FA1FB400DF51E4 /* ZipCodeCell.swift */; };
 		F16D9CD426FBA62500828123 /* SearchState.swift in Sources */ = {isa = PBXBuildFile; fileRef = F16D9CD326FBA62500828123 /* SearchState.swift */; };
 		F1BB950526FA6F7F0079AE30 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = F1BB950426FA6F7F0079AE30 /* Localizable.strings */; };
-		F1BB950726FA8C050079AE30 /* UITextField+ErrorState.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1BB950626FA8C050079AE30 /* UITextField+ErrorState.swift */; };
+		F1BB950726FA8C050079AE30 /* UITextField+hasError.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1BB950626FA8C050079AE30 /* UITextField+hasError.swift */; };
 		F1C10FC926F92E8400FF5A20 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1C10FC826F92E8400FF5A20 /* AppDelegate.swift */; };
 		F1C10FCB26F92E8400FF5A20 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1C10FCA26F92E8400FF5A20 /* SceneDelegate.swift */; };
 		F1C10FCD26F92E8400FF5A20 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1C10FCC26F92E8400FF5A20 /* SearchViewController.swift */; };
@@ -48,7 +48,7 @@
 		F145A52D26FA1FB400DF51E4 /* ZipCodeCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZipCodeCell.swift; sourceTree = "<group>"; };
 		F16D9CD326FBA62500828123 /* SearchState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchState.swift; sourceTree = "<group>"; };
 		F1BB950426FA6F7F0079AE30 /* Localizable.strings */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; path = Localizable.strings; sourceTree = "<group>"; };
-		F1BB950626FA8C050079AE30 /* UITextField+ErrorState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextField+ErrorState.swift"; sourceTree = "<group>"; };
+		F1BB950626FA8C050079AE30 /* UITextField+hasError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextField+hasError.swift"; sourceTree = "<group>"; };
 		F1C10FC526F92E8400FF5A20 /* ZipCoder.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ZipCoder.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F1C10FC826F92E8400FF5A20 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F1C10FCA26F92E8400FF5A20 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -116,13 +116,13 @@
 			children = (
 				F1C10FC826F92E8400FF5A20 /* AppDelegate.swift */,
 				F1C10FCA26F92E8400FF5A20 /* SceneDelegate.swift */,
+				F16D9CD326FBA62500828123 /* SearchState.swift */,
 				F1C10FCC26F92E8400FF5A20 /* SearchViewController.swift */,
 				F13F181A26F94C20009A6EDB /* SearchViewModel.swift */,
-				F13F181126F92F4C009A6EDB /* ZipCodeApi.swift */,
+				F1BB950626FA8C050079AE30 /* UITextField+hasError.swift */,
 				F145A52B26F9592500DF51E4 /* ZipCode.swift */,
+				F13F181126F92F4C009A6EDB /* ZipCodeApi.swift */,
 				F145A52D26FA1FB400DF51E4 /* ZipCodeCell.swift */,
-				F1BB950626FA8C050079AE30 /* UITextField+ErrorState.swift */,
-				F16D9CD326FBA62500828123 /* SearchState.swift */,
 				F1C10FCE26F92E8400FF5A20 /* Main.storyboard */,
 				F1C10FD126F92E8500FF5A20 /* Assets.xcassets */,
 				F1C10FD326F92E8500FF5A20 /* LaunchScreen.storyboard */,
@@ -285,7 +285,7 @@
 				F13F181B26F94C20009A6EDB /* SearchViewModel.swift in Sources */,
 				F16D9CD426FBA62500828123 /* SearchState.swift in Sources */,
 				F1C10FCD26F92E8400FF5A20 /* SearchViewController.swift in Sources */,
-				F1BB950726FA8C050079AE30 /* UITextField+ErrorState.swift in Sources */,
+				F1BB950726FA8C050079AE30 /* UITextField+hasError.swift in Sources */,
 				F1C10FC926F92E8400FF5A20 /* AppDelegate.swift in Sources */,
 				F1C10FCB26F92E8400FF5A20 /* SceneDelegate.swift in Sources */,
 				F13F181226F92F4C009A6EDB /* ZipCodeApi.swift in Sources */,
