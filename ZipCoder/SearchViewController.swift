@@ -105,6 +105,7 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if let cell = tableView.dequeueReusableCell(withIdentifier: "zipCodeCell") as? ZipCodeCell {
             cell.zipCode = _zipCodes[indexPath.row]
+            cell.selectionStyle = .none
             return cell
         } else {
             // return empty cell, log error
