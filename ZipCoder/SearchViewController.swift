@@ -59,6 +59,8 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
             case .distanceError:
                 self.distanceField.hasError(true)
                 self.messageLabel.text = NSLocalizedString("PLEASE_ENTER_VALID_DISTANCE", comment: "")
+            case .apiError:
+                self.messageLabel.text = NSLocalizedString("API_ERROR", comment: "")
             case .searching:
                 self.setFormEnabled(false)
                 self.messageLabel.text = NSLocalizedString("FETCHING_RESULTS", comment: "")

@@ -54,13 +54,32 @@ class SearchViewModel {
 
         searchState = SearchState.searching
         searchedZipCode = zipCode
-
-        zipCodeApi.getZipCodes(zipCode: zipCode, distance: distance, completionHandler: { (zipCodeResults) in
+        
+        do {
+            try zipCodeApi.getZipCodes(zipCode: zipCode, distance: distance, completion: { result in
+                
+                do {
+                    if let zipCodes = try result.get() {
+                        DispatchQueue.main.async {
+                            self.searchState = SearchState.completed
+                            self.zipCodes = zipCodes
+                        }
+                    }
+                } catch {
+                    print("no else maybe")
+                    print(error.localizedDescription)
+                    DispatchQueue.main.async {
+                        self.searchState = SearchState.apiError
+                    }
+                }
+            })
+        } catch {
+            print("error?")
+            print(error.localizedDescription)
             DispatchQueue.main.async {
-                self.searchState = SearchState.completed
-                self.zipCodes = zipCodeResults
+                self.searchState = SearchState.apiError
             }
-        })
+        }
 
     }
 }

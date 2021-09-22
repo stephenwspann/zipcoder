@@ -12,5 +12,6 @@ enum SearchState {
     case zipCodeError
     case distanceError
     case searching
+    case apiError
     case completed
 }

@@ -8,3 +8,4 @@
 "FETCHING_RESULTS" = "Fetching results...";
 "FOUND_X_RESULTS" = "Found %d results.";
 "NO_RESULTS_FOUND" = "No results found.";
+"API_ERROR" = "API error, check your internet connection.";
