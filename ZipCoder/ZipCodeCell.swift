@@ -12,7 +12,7 @@ class ZipCodeCell: UITableViewCell {
     @IBOutlet var zipCodeLabel: UILabel!
     @IBOutlet var cityStateLabel: UILabel!
     @IBOutlet var distanceLabel: UILabel!
-    
+
     var zipCode: ZipCode? {
         didSet {
             if let zip = zipCode {
@@ -22,9 +22,9 @@ class ZipCodeCell: UITableViewCell {
             }
         }
     }
-    
+
     required init?(coder: NSCoder) {
         super.init(coder: coder)
     }
-    
+
 }

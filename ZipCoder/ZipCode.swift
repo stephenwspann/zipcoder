@@ -12,7 +12,7 @@ struct ZipCode {
     let cityState: String
     let distance: String
     let distanceSortable: Float
-    
+
     init(zipCode: String, distance: Float, city: String, state: String) {
         self.zipCode = zipCode
         self.cityState = city + ", " + state

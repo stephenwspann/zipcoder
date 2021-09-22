@@ -8,9 +8,9 @@
 import UIKit
 
 extension UITextField {
-    
-    public func setErrorState(hasError: Bool){
-        
+
+    public func setErrorState(hasError: Bool) {
+
         if hasError {
             layer.borderWidth = 1
             layer.borderColor = UIColor.red.cgColor
@@ -19,5 +19,5 @@ extension UITextField {
             layer.borderColor = UIColor.clear.cgColor
         }
     }
-    
+
 }
