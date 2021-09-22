@@ -7,14 +7,6 @@
 
 import Foundation
 
-enum SearchState {
-    case initialState
-    case zipCodeError
-    case distanceError
-    case searching
-    case completed
-}
-
 class SearchViewModel {
     
     var zipCodeApi = ZipCodeApi()
