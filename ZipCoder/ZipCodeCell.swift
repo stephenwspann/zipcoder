@@ -15,9 +15,11 @@ class ZipCodeCell: UITableViewCell {
     
     var zipCode: ZipCode? {
         didSet {
-            zipCodeLabel.text = zipCode?.zipCode
-            cityStateLabel.text = zipCode?.cityState
-            distanceLabel.text = zipCode?.distance
+            if let zip = zipCode {
+                zipCodeLabel.text = zip.zipCode
+                cityStateLabel.text = zip.cityState
+                distanceLabel.text = zip.distance
+            }
         }
     }
     

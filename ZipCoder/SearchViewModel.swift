@@ -26,19 +26,24 @@ class SearchViewModel {
             }
         }
     }
-
-    public init() {
-
+    
+    func zipCodeIsValid(_ zipCode: String) -> Bool {
+        return zipCode.range(of: #"^[0-9]{5}$"#, options: .regularExpression) != nil
+    }
+    
+    func distanceIsValid(_ distance: Int) -> Bool {
+        // The API is capped at 500 miles (~805 km)
+        return distance > 0 && distance <= 805
     }
     
     public func getZipCodes(zipCode: String?, distance: String?) {
         
-        guard let zipCodeVal = Int(zipCode!) else {
+        guard let zipCodeVal = Int(zipCode!), zipCodeIsValid(zipCode!) else {
             searchState = SearchState.zipCodeError
             return
         }
         
-        guard let distanceVal = Int(distance!) else {
+        guard let distanceVal = Int(distance!), distanceIsValid(distanceVal) else {
             searchState = SearchState.distanceError
             return
         }

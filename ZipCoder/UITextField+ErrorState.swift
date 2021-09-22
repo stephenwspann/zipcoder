@@ -7,16 +7,15 @@
 
 import UIKit
 
-public extension UITextField {
+extension UITextField {
     
-    func setErrorState(hasError: Bool) {
-        if (hasError) {
-            layer.cornerRadius = 8.0
-            layer.masksToBounds = true
-            layer.borderColor = UIColor.red.cgColor
-            layer.borderWidth = 1.0
-        } else {
+    public func setErrorState(hasError: Bool){
+        
+        if hasError {
             layer.borderWidth = 1
+            layer.borderColor = UIColor.red.cgColor
+            becomeFirstResponder()
+        } else {
             layer.borderColor = UIColor.clear.cgColor
         }
     }
