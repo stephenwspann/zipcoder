@@ -15,9 +15,9 @@ enum SearchState {
     case completed
 }
 
-class SearchViewModel: ObservableObject {
+class SearchViewModel {
     
-    var zipCodeApi: ZipCodeApi?
+    var zipCodeApi = ZipCodeApi()
 
     @Published var searchState: SearchState = SearchState.initialState
     
@@ -36,13 +36,7 @@ class SearchViewModel: ObservableObject {
     }
 
     public init() {
-        
-        do {
-            try zipCodeApi = ZipCodeApi()
-        } catch {
-            
-        }
-        
+
     }
     
     public func getZipCodes(zipCode: String?, distance: String?) {
@@ -62,7 +56,7 @@ class SearchViewModel: ObservableObject {
         
         _searchedZipCode = String(zipCodeVal)
         
-        zipCodeApi?.getZipCodes(zipCode: zipCodeVal, distance: distanceVal, completionHandler: {(zipCodeResults) in
+        zipCodeApi.getZipCodes(zipCode: zipCodeVal, distance: distanceVal, completionHandler: {(zipCodeResults) in
             DispatchQueue.main.async {
                 self._zipCodes = zipCodeResults
                 self.searchState = SearchState.completed
