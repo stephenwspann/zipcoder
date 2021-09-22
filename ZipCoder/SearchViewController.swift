@@ -39,25 +39,23 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
         
         // observe model
         viewModel.$searchState.sink { searchState in
+            
+            self.resetFormErrors()
+            
             switch(searchState) {
             case .initialState:
-                self.resetFormErrors()
                 self.setFormEnabled(enabled: true)
                 self.messageLabel.text = ""
             case .zipCodeError:
-                self.resetFormErrors()
                 self.zipCodeField.setErrorState(hasError: true)
                 self.messageLabel.text = NSLocalizedString("PLEASE_ENTER_VALID_ZIP", comment: "")
             case .distanceError:
-                self.resetFormErrors()
                 self.distanceField.setErrorState(hasError: true)
                 self.messageLabel.text = NSLocalizedString("PLEASE_ENTER_VALID_DISTANCE", comment: "")
             case .searching:
-                self.resetFormErrors()
                 self.setFormEnabled(enabled: false)
                 self.messageLabel.text = NSLocalizedString("FETCHING_RESULTS", comment: "")
             case .completed:
-                self.resetFormErrors()
                 self.setFormEnabled(enabled: true)
             }
         }.store(in: &cancellable)
