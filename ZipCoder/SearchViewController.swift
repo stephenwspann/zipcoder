@@ -22,6 +22,8 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
     private var _zipCodes = [ZipCode]()
     
     private var cancellable = Set<AnyCancellable>()
+    
+    // MARK: - UIViewController lifecycle methods
 
     override func viewDidLoad() {
         
@@ -93,6 +95,8 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
     @objc func searchTapped() {
         self.viewModel.getZipCodes(zipCode: zipCodeField.text, distance: distanceField.text)
     }
+    
+    // MARK: - UITableViewDataSource methods
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return _zipCodes.count
