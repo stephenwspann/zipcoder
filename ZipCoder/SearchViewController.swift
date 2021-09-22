@@ -40,6 +40,10 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
         zipCodeLabel.text = NSLocalizedString("ZIP_CODE_FIELD_LABEL", comment: "")
         distanceLabel.text = NSLocalizedString("DISTANCE_FIELD_LABEL", comment: "")
         searchButton.setTitle(NSLocalizedString("SEARCH_BUTTON_LABEL", comment: ""), for: .normal)
+        
+        // accessibility labels
+        zipCodeField.accessibilityLabel = NSLocalizedString("ZIP_CODE_FIELD_LABEL", comment: "")
+        distanceField.accessibilityLabel = NSLocalizedString("DISTANCE_FIELD_LABEL_ACCESSIBLE", comment: "")
 
         // observe model
         viewModel.$searchState.sink { searchState in
