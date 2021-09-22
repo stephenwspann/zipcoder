@@ -145,9 +145,9 @@ in km to search for nearby zip codes.</string>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
-                                            <outlet property="cityState" destination="j4O-My-ife" id="PAG-sf-GRR"/>
-                                            <outlet property="distance" destination="Xbd-cY-8GY" id="oAs-x3-VAH"/>
-                                            <outlet property="zipCode" destination="hLm-Ey-upY" id="jW4-Ek-QbF"/>
+                                            <outlet property="cityStateLabel" destination="j4O-My-ife" id="UJf-74-gU2"/>
+                                            <outlet property="distanceLabel" destination="Xbd-cY-8GY" id="iaj-Uf-wC4"/>
+                                            <outlet property="zipCodeLabel" destination="hLm-Ey-upY" id="Bvx-x1-C2c"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>

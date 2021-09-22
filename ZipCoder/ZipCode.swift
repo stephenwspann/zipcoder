@@ -9,7 +9,12 @@ import Foundation
 
 struct ZipCode {
     let zipCode: String
-    let distance: Float
-    let city: String
-    let state: String
+    let cityState: String
+    let distance: String
+    
+    init(zipCode: String, distance: Float, city: String, state: String) {
+        self.zipCode = zipCode
+        self.cityState = city + ", " + state
+        self.distance = String(distance) + " km"
+    }
 }

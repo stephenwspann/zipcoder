@@ -9,9 +9,17 @@ import UIKit
 
 class ZipCodeCell: UITableViewCell {
 
-    @IBOutlet var zipCode: UILabel!
-    @IBOutlet var cityState: UILabel!
-    @IBOutlet var distance: UILabel!
+    @IBOutlet var zipCodeLabel: UILabel!
+    @IBOutlet var cityStateLabel: UILabel!
+    @IBOutlet var distanceLabel: UILabel!
+    
+    var zipCode: ZipCode? {
+        didSet {
+            zipCodeLabel.text = zipCode?.zipCode
+            cityStateLabel.text = zipCode?.cityState
+            distanceLabel.text = zipCode?.distance
+        }
+    }
     
     required init?(coder: NSCoder) {
         super.init(coder: coder)
