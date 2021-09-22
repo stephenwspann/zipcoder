@@ -41,17 +41,24 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
         viewModel.$searchState.sink { searchState in
             switch(searchState) {
             case .initialState:
-                self.zipCodeField.isEnabled = true
-                self.distanceField.isEnabled = true
-                self.searchButton.isEnabled = true
+                self.resetFormErrors()
+                self.setFormEnabled(enabled: true)
+                self.messageLabel.text = ""
+            case .zipCodeError:
+                self.resetFormErrors()
+                self.zipCodeField.setErrorState(hasError: true)
+                self.messageLabel.text = NSLocalizedString("PLEASE_ENTER_VALID_ZIP", comment: "")
+            case .distanceError:
+                self.resetFormErrors()
+                self.distanceField.setErrorState(hasError: true)
+                self.messageLabel.text = NSLocalizedString("PLEASE_ENTER_VALID_DISTANCE", comment: "")
             case .searching:
-                self.zipCodeField.isEnabled = false
-                self.distanceField.isEnabled = false
-                self.searchButton.isEnabled = false
+                self.resetFormErrors()
+                self.setFormEnabled(enabled: false)
+                self.messageLabel.text = NSLocalizedString("FETCHING_RESULTS", comment: "")
             case .completed:
-                self.zipCodeField.isEnabled = true
-                self.distanceField.isEnabled = true
-                self.searchButton.isEnabled = true
+                self.resetFormErrors()
+                self.setFormEnabled(enabled: true)
             }
         }.store(in: &cancellable)
  
@@ -74,8 +81,19 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
         
     }
     
+    func setFormEnabled(enabled: Bool) {
+        zipCodeField.isEnabled = enabled
+        distanceField.isEnabled = enabled
+        searchButton.isEnabled = enabled
+    }
+    
+    func resetFormErrors() {
+        zipCodeField.setErrorState(hasError: false)
+        distanceField.setErrorState(hasError: false)
+    }
+    
     @objc func searchTapped() {
-        self.viewModel.getZipCodes(zipCode: Int(zipCodeField.text!)!, radius: Int(distanceField.text!)!)
+        self.viewModel.getZipCodes(zipCode: zipCodeField.text, distance: distanceField.text)
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

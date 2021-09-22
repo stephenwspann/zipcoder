@@ -2,5 +2,8 @@
 "SEARCH_BUTTON_LABEL" = "Search";
 "ZIP_CODE_FIELD_PLACEHOLDER" = "Zip Code";
 "DISTANCE_FIELD_PLACEHOLDER" = "Distance (km)";
+"PLEASE_ENTER_VALID_ZIP" = "Please enter a valid zip code.";
+"PLEASE_ENTER_VALID_DISTANCE" = "Please enter a distance from 1-500 km.";
+"FETCHING_RESULTS" = "Fetching results...";
 "FOUND_X_RESULTS" = "Found %d results.";
 "NO_RESULTS_FOUND" = "No results found.";

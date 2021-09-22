@@ -9,6 +9,8 @@ import Foundation
 
 enum SearchState {
     case initialState
+    case zipCodeError
+    case distanceError
     case searching
     case completed
 }
@@ -21,12 +23,12 @@ class SearchViewModel: ObservableObject {
     
     @Published var filteredZipCodes: [ZipCode] = [ZipCode]()
     
-    private var _searchedZipCode: Int = 0
+    private var _searchedZipCode = ""
     
     private var _zipCodes = [ZipCode]() {
         didSet {
             filteredZipCodes = _zipCodes.filter {
-                $0.zipCode != String(_searchedZipCode)
+                $0.zipCode != _searchedZipCode
             }.sorted {
                 $0.distance < $1.distance
             }
@@ -43,14 +45,24 @@ class SearchViewModel: ObservableObject {
         
     }
     
-    public func getZipCodes(zipCode: Int, radius: Int) {
+    public func getZipCodes(zipCode: String?, distance: String?) {
+        
+        guard let zipCodeVal = Int(zipCode!) else {
+            searchState = SearchState.zipCodeError
+            return
+        }
+        
+        guard let distanceVal = Int(distance!) else {
+            searchState = SearchState.distanceError
+            return
+        }
         
         _zipCodes = [ZipCode]()
         searchState = SearchState.searching
         
-        _searchedZipCode = zipCode
+        _searchedZipCode = String(zipCodeVal)
         
-        zipCodeApi?.getZipCodes(zipCode: zipCode, distance: radius, completionHandler: {(zipCodeResults) in
+        zipCodeApi?.getZipCodes(zipCode: zipCodeVal, distance: distanceVal, completionHandler: {(zipCodeResults) in
             DispatchQueue.main.async {
                 self._zipCodes = zipCodeResults
                 self.searchState = SearchState.completed
