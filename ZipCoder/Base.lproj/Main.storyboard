@@ -213,10 +213,12 @@ in km to search for nearby zip codes.</string>
                     <navigationItem key="navigationItem" title="Search" id="MWj-Mz-PiI"/>
                     <connections>
                         <outlet property="distanceField" destination="NjA-Vv-gL8" id="LhW-53-L4B"/>
+                        <outlet property="distanceLabel" destination="mBq-w1-Yc1" id="Avm-L9-wAY"/>
                         <outlet property="instructionsLabel" destination="WW8-4A-N5h" id="2lL-ng-0G6"/>
                         <outlet property="messageLabel" destination="BJI-6u-PSe" id="1Hw-oL-5Nm"/>
                         <outlet property="searchButton" destination="jqk-2e-Bmg" id="BKB-8c-FTe"/>
                         <outlet property="zipCodeField" destination="h9X-Gn-aD9" id="jOw-1d-Gk8"/>
+                        <outlet property="zipCodeLabel" destination="xWo-YD-4ip" id="74I-Zw-IRN"/>
                         <outlet property="zipCodeTable" destination="UGP-LG-3Gv" id="UWF-b0-eUG"/>
                     </connections>
                 </viewController>
