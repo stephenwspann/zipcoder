@@ -7,15 +7,11 @@
 
 import Foundation
 
-enum ZipCodeApiError: Error {
-    case settingsFileNotFound
-    case jsonMissingApiKey
-    case jsonError
-}
-
 class ZipCodeApi {
     
-    var apiKey: String
+    // NOTE: It's not great to have API keys in the Git repository.
+    // In production, this could be loaded from an external JSON file.
+    let apiKey: String = "CGk1ezxPVm53prDhs1LExkQu6xOnYMkMfUtgkVZhXoTeLfQku9zaqdXTvANfY4YH"
     
     // Keep snake_case json key values contained in this class
     struct ZipCodeJson: Codable {
@@ -27,24 +23,6 @@ class ZipCodeApi {
 
     struct ApiResponseJson: Codable {
         let zip_codes: [ZipCodeJson]
-    }
-    
-    init() throws {
-        if let path = Bundle.main.path(forResource: "app_settings", ofType: "json") {
-            do {
-                let data = try Data(contentsOf: URL(fileURLWithPath: path), options: .mappedIfSafe)
-                let jsonResult = try JSONSerialization.jsonObject(with: data, options: .mutableLeaves)
-                if let jsonResult = jsonResult as? Dictionary<String, AnyObject>, let key = jsonResult["ZIP_CODE_API_KEY"] as? String {
-                    apiKey = key
-                } else {
-                    throw ZipCodeApiError.jsonMissingApiKey
-                }
-            } catch {
-                throw error
-            }
-        } else {
-            throw ZipCodeApiError.settingsFileNotFound
-        }
     }
     
     // format: https://www.zipcodeapi.com/rest/<api_key>/radius.<format>/<zip_code>/<distance>/<units>

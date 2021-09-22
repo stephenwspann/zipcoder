@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		F13F181226F92F4C009A6EDB /* ZipCodeApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = F13F181126F92F4C009A6EDB /* ZipCodeApi.swift */; };
-		F13F181526F934DC009A6EDB /* app_settings.json in Resources */ = {isa = PBXBuildFile; fileRef = F13F181426F934DC009A6EDB /* app_settings.json */; };
 		F13F181B26F94C20009A6EDB /* SearchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F13F181A26F94C20009A6EDB /* SearchViewModel.swift */; };
 		F145A52C26F9592500DF51E4 /* ZipCode.swift in Sources */ = {isa = PBXBuildFile; fileRef = F145A52B26F9592500DF51E4 /* ZipCode.swift */; };
 		F145A52E26FA1FB400DF51E4 /* ZipCodeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F145A52D26FA1FB400DF51E4 /* ZipCodeCell.swift */; };
@@ -43,7 +42,6 @@
 
 /* Begin PBXFileReference section */
 		F13F181126F92F4C009A6EDB /* ZipCodeApi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ZipCodeApi.swift; path = ../../zipcoder/ZipCoder/ZipCodeApi.swift; sourceTree = "<group>"; };
-		F13F181426F934DC009A6EDB /* app_settings.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = app_settings.json; sourceTree = "<group>"; };
 		F13F181A26F94C20009A6EDB /* SearchViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = SearchViewModel.swift; path = ../../zipcoder/ZipCoder/SearchViewModel.swift; sourceTree = "<group>"; };
 		F145A52B26F9592500DF51E4 /* ZipCode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZipCode.swift; sourceTree = "<group>"; };
 		F145A52D26FA1FB400DF51E4 /* ZipCodeCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZipCodeCell.swift; sourceTree = "<group>"; };
@@ -114,7 +112,6 @@
 		F1C10FC726F92E8400FF5A20 /* ZipCoder */ = {
 			isa = PBXGroup;
 			children = (
-				F13F181426F934DC009A6EDB /* app_settings.json */,
 				F1C10FC826F92E8400FF5A20 /* AppDelegate.swift */,
 				F1C10FCA26F92E8400FF5A20 /* SceneDelegate.swift */,
 				F1C10FCC26F92E8400FF5A20 /* SearchViewController.swift */,
@@ -255,7 +252,6 @@
 				F1BB950526FA6F7F0079AE30 /* Localizable.strings in Resources */,
 				F1C10FD526F92E8500FF5A20 /* LaunchScreen.storyboard in Resources */,
 				F1C10FD226F92E8500FF5A20 /* Assets.xcassets in Resources */,
-				F13F181526F934DC009A6EDB /* app_settings.json in Resources */,
 				F1C10FD026F92E8400FF5A20 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
