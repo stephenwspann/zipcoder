@@ -19,27 +19,18 @@ fileprivate struct ApiResponseJson: Codable {
     let zip_codes: [ZipCodeJson]
 }
 
-enum ZipCodeApiError: Error {
-    case invalidURL(url: String)
-    case URLSessionError(description: String)
-    case unexpectedStatusCode(statusCode: Int)
-    case invalidHttpResponse
-    case invalidData
-    case invalidJson
-}
-
 class ZipCodeApi {
 
     // NOTE: It's not great to have API keys in the Git repository.
     // In production, this could be loaded from an external JSON file.
-    private let apiKey: String = "CGk1ezxPVm53prDhs1LExkQu6xOnYMkMfUtgkVZhXoTeLfQku9zaqdXTvANfY4YHblah"
+    private let apiKey: String = "CGk1ezxPVm53prDhs1LExkQu6xOnYMkMfUtgkVZhXoTeLfQku9zaqdXTvANfY4YH"
 
     // format: https://www.zipcodeapi.com/rest/<api_key>/radius.<format>/<zip_code>/<distance>/<units>
     private func getApiUrlString(zipCode: String, distance: String) -> String {
         return "https://www.zipcodeapi.com/rest/" + apiKey + "/radius.json/" + zipCode + "/" + distance + "/km"
     }
 
-    func getZipCodes(zipCode: String, distance: String, completion: @escaping(Result<[ZipCode]?,Error>) -> Void) throws {
+    func getZipCodes(zipCode: String, distance: String, completion: @escaping(Result<[ZipCode]?,Error>) -> Void) {
         
         let urlString = getApiUrlString(zipCode: zipCode, distance: distance)
 
@@ -55,7 +46,7 @@ class ZipCodeApi {
             completion(Result {
                 
                 if let error = error {
-                    throw ZipCodeApiError.URLSessionError(description: error.localizedDescription)
+                    throw error
                 }
                 
                 guard let httpResponse = response as? HTTPURLResponse else {

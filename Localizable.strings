@@ -8,4 +8,10 @@
 "FETCHING_RESULTS" = "Fetching results...";
 "FOUND_X_RESULTS" = "Found %d results.";
 "NO_RESULTS_FOUND" = "No results found.";
-"API_ERROR" = "API error, check your internet connection.";
+"API_ERROR_MESSAGE" = "API error, check your internet connection.";
+
+"ERROR_INVALID_URL_X" = "Invalid URL: %s";
+"ERROR_UNEXPECTED_STATUS_CODE_X" = "Unexpected Status Code: %d";
+"ERROR_INVALID_HTTP_RESPONSE" = "Invalid HTTP Response";
+"ERROR_INVALID_DATA" = "Invalid Data";
+"ERROR_INVALID_JSON" = "Invalid JSON";

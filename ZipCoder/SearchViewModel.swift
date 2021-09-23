@@ -54,32 +54,33 @@ class SearchViewModel {
 
         searchState = SearchState.searching
         searchedZipCode = zipCode
-        
-        do {
-            try zipCodeApi.getZipCodes(zipCode: zipCode, distance: distance, completion: { result in
-                
-                do {
-                    if let zipCodes = try result.get() {
-                        DispatchQueue.main.async {
-                            self.searchState = SearchState.completed
-                            self.zipCodes = zipCodes
-                        }
-                    }
-                } catch {
-                    print("no else maybe")
-                    print(error.localizedDescription)
+
+        zipCodeApi.getZipCodes(zipCode: zipCode, distance: distance, completion: { result in
+            do {
+                if let zipCodes = try result.get() {
                     DispatchQueue.main.async {
-                        self.searchState = SearchState.apiError
+                        self.searchState = SearchState.completed
+                        self.zipCodes = zipCodes
                     }
                 }
-            })
-        } catch {
-            print("error?")
-            print(error.localizedDescription)
-            DispatchQueue.main.async {
-                self.searchState = SearchState.apiError
+            } catch ZipCodeApiError.invalidURL(let url) {
+                let formatString = NSLocalizedString("ERROR_INVALID_URL_X", comment: "")
+                print(String.localizedStringWithFormat(formatString, url))
+                DispatchQueue.main.async {
+                    self.searchState = SearchState.apiError
+                }
+            } catch ZipCodeApiError.unexpectedStatusCode(let statusCode) {
+                let formatString = NSLocalizedString("ERROR_UNEXPECTED_STATUS_CODE_X", comment: "")
+                print(String.localizedStringWithFormat(formatString, statusCode))
+                DispatchQueue.main.async {
+                    self.searchState = SearchState.apiError
+                }
+            } catch {
+                print(error.localizedDescription)
+                DispatchQueue.main.async {
+                    self.searchState = SearchState.apiError
+                }
             }
-        }
-
+        })
     }
 }
