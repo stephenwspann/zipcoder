@@ -8,7 +8,7 @@
 import UIKit
 import Combine
 
-class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class SearchViewController: UIViewController {
 
     @IBOutlet var instructionsLabel: UILabel!
     @IBOutlet var zipCodeLabel: UILabel!
@@ -31,7 +31,6 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
         super.viewDidLoad()
 
         // set up table
-        zipCodeTable.delegate = self
         zipCodeTable.dataSource = self
 
         // localized strings
@@ -105,8 +104,10 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
     @objc func searchTapped() {
         self.viewModel.callApi(zipCode: zipCodeField.text, distance: distanceField.text)
     }
+}
 
-    // MARK: - UITableViewDataSource methods
+
+extension SearchViewController: UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return zipCodes.count
