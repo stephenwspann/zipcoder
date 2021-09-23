@@ -17,6 +17,59 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="UGP-LG-3Gv">
+                                <rect key="frame" x="0.0" y="252" width="414" height="610"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="zipCodeCell" id="Vnl-Cf-G9R" customClass="ZipCodeCell" customModule="ZipCoder" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="44.5" width="414" height="41"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Vnl-Cf-G9R" id="Byv-WV-eCb">
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="41"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Zip" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hLm-Ey-upY">
+                                                    <rect key="frame" x="20" y="10" width="118" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="City, State" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="j4O-My-ife">
+                                                    <rect key="frame" x="148" y="10" width="118" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Distance" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Xbd-cY-8GY">
+                                                    <rect key="frame" x="276" y="10" width="118" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="trailing" secondItem="Xbd-cY-8GY" secondAttribute="trailing" constant="20" id="0Tn-oD-hqU"/>
+                                                <constraint firstItem="Xbd-cY-8GY" firstAttribute="leading" secondItem="j4O-My-ife" secondAttribute="trailing" constant="10" id="2gp-Hg-NUo"/>
+                                                <constraint firstItem="j4O-My-ife" firstAttribute="width" secondItem="hLm-Ey-upY" secondAttribute="width" id="AY0-AP-uEu"/>
+                                                <constraint firstItem="hLm-Ey-upY" firstAttribute="top" secondItem="Byv-WV-eCb" secondAttribute="top" constant="10" id="D5V-jv-CxQ"/>
+                                                <constraint firstItem="j4O-My-ife" firstAttribute="top" secondItem="Byv-WV-eCb" secondAttribute="top" constant="10" id="OGa-ok-Phb"/>
+                                                <constraint firstItem="Xbd-cY-8GY" firstAttribute="top" secondItem="Byv-WV-eCb" secondAttribute="top" constant="10" id="Ppl-oj-WFI"/>
+                                                <constraint firstItem="j4O-My-ife" firstAttribute="leading" secondItem="hLm-Ey-upY" secondAttribute="trailing" constant="10" id="WeB-Wz-r31"/>
+                                                <constraint firstAttribute="bottom" secondItem="hLm-Ey-upY" secondAttribute="bottom" constant="10" id="cP2-TB-Zgg"/>
+                                                <constraint firstItem="Xbd-cY-8GY" firstAttribute="width" secondItem="j4O-My-ife" secondAttribute="width" id="cx4-Ui-s4Z"/>
+                                                <constraint firstAttribute="bottom" secondItem="Xbd-cY-8GY" secondAttribute="bottom" constant="10" id="eCX-iW-bte"/>
+                                                <constraint firstAttribute="bottom" secondItem="j4O-My-ife" secondAttribute="bottom" constant="10" id="eUh-gd-XFk"/>
+                                                <constraint firstItem="hLm-Ey-upY" firstAttribute="leading" secondItem="Byv-WV-eCb" secondAttribute="leading" constant="20" id="ohb-El-uaY"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="cityStateLabel" destination="j4O-My-ife" id="UJf-74-gU2"/>
+                                            <outlet property="distanceLabel" destination="Xbd-cY-8GY" id="iaj-Uf-wC4"/>
+                                            <outlet property="zipCodeLabel" destination="hLm-Ey-upY" id="Bvx-x1-C2c"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="p4u-DJ-Rzz">
                                 <rect key="frame" x="0.0" y="44" width="414" height="206"/>
                                 <subviews>
@@ -74,18 +127,6 @@ in km to search for nearby zip codes.</string>
                                             <constraint firstItem="xWo-YD-4ip" firstAttribute="top" secondItem="c1M-eh-Npo" secondAttribute="top" constant="10" id="tAt-An-Ot9"/>
                                         </constraints>
                                     </view>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Message" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BJI-6u-PSe">
-                                        <rect key="frame" x="20" y="160" width="374" height="30"/>
-                                        <accessibility key="accessibilityConfiguration">
-                                            <accessibilityTraits key="traits" updatesFrequently="YES"/>
-                                        </accessibility>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="30" id="ivv-nd-Weu"/>
-                                        </constraints>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <nil key="textColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="T9j-mt-iXu">
                                         <rect key="frame" x="0.0" y="100" width="414" height="60"/>
                                         <subviews>
@@ -132,15 +173,32 @@ in km to search for nearby zip codes.</string>
                                             <constraint firstItem="h9X-Gn-aD9" firstAttribute="top" secondItem="T9j-mt-iXu" secondAttribute="top" id="wMU-3J-EL0"/>
                                         </constraints>
                                     </view>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Message" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BJI-6u-PSe">
+                                        <rect key="frame" x="20" y="160" width="374" height="30"/>
+                                        <accessibility key="accessibilityConfiguration">
+                                            <accessibilityTraits key="traits" updatesFrequently="YES"/>
+                                        </accessibility>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="30" id="ivv-nd-Weu"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" misplaced="YES" hidesWhenStopped="YES" style="large" translatesAutoresizingMaskIntoConstraints="NO" id="RS5-hY-xFV">
+                                        <rect key="frame" x="163" y="250" width="88" height="88"/>
+                                    </activityIndicatorView>
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstItem="WW8-4A-N5h" firstAttribute="top" secondItem="p4u-DJ-Rzz" secondAttribute="top" constant="10" id="0Ua-q1-FeC"/>
                                     <constraint firstItem="BJI-6u-PSe" firstAttribute="top" secondItem="T9j-mt-iXu" secondAttribute="bottom" id="0oB-v2-Lah"/>
+                                    <constraint firstItem="RS5-hY-xFV" firstAttribute="top" secondItem="p4u-DJ-Rzz" secondAttribute="top" constant="250" id="9No-OP-4rc"/>
                                     <constraint firstAttribute="height" constant="206" id="B3M-oi-ndy"/>
                                     <constraint firstItem="c1M-eh-Npo" firstAttribute="leading" secondItem="p4u-DJ-Rzz" secondAttribute="leading" id="QZM-33-pbD"/>
                                     <constraint firstAttribute="trailing" secondItem="BJI-6u-PSe" secondAttribute="trailing" constant="20" id="TxZ-T8-2JK"/>
                                     <constraint firstItem="BJI-6u-PSe" firstAttribute="leading" secondItem="p4u-DJ-Rzz" secondAttribute="leading" constant="20" id="VfU-Gg-NSW"/>
+                                    <constraint firstItem="RS5-hY-xFV" firstAttribute="centerX" secondItem="p4u-DJ-Rzz" secondAttribute="centerX" id="bQ6-qh-rXb"/>
                                     <constraint firstItem="T9j-mt-iXu" firstAttribute="leading" secondItem="p4u-DJ-Rzz" secondAttribute="leading" id="bq5-xd-Pnl"/>
                                     <constraint firstItem="c1M-eh-Npo" firstAttribute="top" secondItem="WW8-4A-N5h" secondAttribute="bottom" id="eTl-yg-PIu"/>
                                     <constraint firstItem="WW8-4A-N5h" firstAttribute="leading" secondItem="p4u-DJ-Rzz" secondAttribute="leading" constant="20" id="j0b-eu-ftq"/>
@@ -150,59 +208,6 @@ in km to search for nearby zip codes.</string>
                                     <constraint firstAttribute="trailing" secondItem="T9j-mt-iXu" secondAttribute="trailing" id="zkZ-vy-Q2A"/>
                                 </constraints>
                             </view>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="UGP-LG-3Gv">
-                                <rect key="frame" x="0.0" y="252" width="414" height="610"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                                <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="zipCodeCell" id="Vnl-Cf-G9R" customClass="ZipCodeCell" customModule="ZipCoder" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="44.5" width="414" height="41.5"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Vnl-Cf-G9R" id="Byv-WV-eCb">
-                                            <rect key="frame" x="0.0" y="0.0" width="414" height="41.5"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Zip" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hLm-Ey-upY">
-                                                    <rect key="frame" x="20" y="10" width="118" height="21.5"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <nil key="textColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="City, State" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="j4O-My-ife">
-                                                    <rect key="frame" x="148" y="10" width="118" height="21.5"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <nil key="textColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Distance" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Xbd-cY-8GY">
-                                                    <rect key="frame" x="276" y="10" width="118" height="21.5"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <nil key="textColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                            </subviews>
-                                            <constraints>
-                                                <constraint firstAttribute="trailing" secondItem="Xbd-cY-8GY" secondAttribute="trailing" constant="20" id="0Tn-oD-hqU"/>
-                                                <constraint firstItem="Xbd-cY-8GY" firstAttribute="leading" secondItem="j4O-My-ife" secondAttribute="trailing" constant="10" id="2gp-Hg-NUo"/>
-                                                <constraint firstItem="j4O-My-ife" firstAttribute="width" secondItem="hLm-Ey-upY" secondAttribute="width" id="AY0-AP-uEu"/>
-                                                <constraint firstItem="hLm-Ey-upY" firstAttribute="top" secondItem="Byv-WV-eCb" secondAttribute="top" constant="10" id="D5V-jv-CxQ"/>
-                                                <constraint firstItem="j4O-My-ife" firstAttribute="top" secondItem="Byv-WV-eCb" secondAttribute="top" constant="10" id="OGa-ok-Phb"/>
-                                                <constraint firstItem="Xbd-cY-8GY" firstAttribute="top" secondItem="Byv-WV-eCb" secondAttribute="top" constant="10" id="Ppl-oj-WFI"/>
-                                                <constraint firstItem="j4O-My-ife" firstAttribute="leading" secondItem="hLm-Ey-upY" secondAttribute="trailing" constant="10" id="WeB-Wz-r31"/>
-                                                <constraint firstAttribute="bottom" secondItem="hLm-Ey-upY" secondAttribute="bottom" constant="10" id="cP2-TB-Zgg"/>
-                                                <constraint firstItem="Xbd-cY-8GY" firstAttribute="width" secondItem="j4O-My-ife" secondAttribute="width" id="cx4-Ui-s4Z"/>
-                                                <constraint firstAttribute="bottom" secondItem="Xbd-cY-8GY" secondAttribute="bottom" constant="10" id="eCX-iW-bte"/>
-                                                <constraint firstAttribute="bottom" secondItem="j4O-My-ife" secondAttribute="bottom" constant="10" id="eUh-gd-XFk"/>
-                                                <constraint firstItem="hLm-Ey-upY" firstAttribute="leading" secondItem="Byv-WV-eCb" secondAttribute="leading" constant="20" id="ohb-El-uaY"/>
-                                            </constraints>
-                                        </tableViewCellContentView>
-                                        <connections>
-                                            <outlet property="cityStateLabel" destination="j4O-My-ife" id="UJf-74-gU2"/>
-                                            <outlet property="distanceLabel" destination="Xbd-cY-8GY" id="iaj-Uf-wC4"/>
-                                            <outlet property="zipCodeLabel" destination="hLm-Ey-upY" id="Bvx-x1-C2c"/>
-                                        </connections>
-                                    </tableViewCell>
-                                </prototypes>
-                            </tableView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="txe-KJ-38f"/>
                         <color key="backgroundColor" systemColor="secondarySystemBackgroundColor"/>
@@ -218,6 +223,7 @@ in km to search for nearby zip codes.</string>
                     </view>
                     <navigationItem key="navigationItem" title="Search" id="MWj-Mz-PiI"/>
                     <connections>
+                        <outlet property="activityIndicator" destination="RS5-hY-xFV" id="wbq-6S-161"/>
                         <outlet property="distanceField" destination="NjA-Vv-gL8" id="LhW-53-L4B"/>
                         <outlet property="distanceLabel" destination="mBq-w1-Yc1" id="Avm-L9-wAY"/>
                         <outlet property="instructionsLabel" destination="WW8-4A-N5h" id="2lL-ng-0G6"/>

@@ -37,7 +37,7 @@ class SearchViewModel {
         return distanceValue > 0 && distanceValue <= 805
     }
 
-    func getZipCodes(zipCode: String?, distance: String?) {
+    func callApi(zipCode: String?, distance: String?) {
         
         // clear previous results on both errors and searches
         zipCodes = [ZipCode]()
@@ -55,7 +55,7 @@ class SearchViewModel {
         searchState = SearchState.searching
         searchedZipCode = zipCode
 
-        zipCodeApi.getZipCodes(zipCode: zipCode, distance: distance, completion: { result in
+        zipCodeApi.getNearbyZipCodes(startingZipCode: zipCode, distance: distance, completion: { result in
             do {
                 if let zipCodes = try result.get() {
                     DispatchQueue.main.async {

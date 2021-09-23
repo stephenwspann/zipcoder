@@ -17,6 +17,7 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
     @IBOutlet var distanceField: UITextField!
     @IBOutlet var searchButton: UIButton!
     @IBOutlet var messageLabel: UILabel!
+    @IBOutlet var activityIndicator: UIActivityIndicatorView!
     @IBOutlet var zipCodeTable: UITableView!
 
     private var viewModel: SearchViewModel! = SearchViewModel()
@@ -49,6 +50,7 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
             // default state
             self.resetFormErrors()
             self.setFormEnabled(true)
+            self.activityIndicator.stopAnimating()
 
             switch(searchState) {
             case .initialState:
@@ -62,6 +64,7 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
             case .apiError:
                 self.messageLabel.text = NSLocalizedString("API_ERROR_MESSAGE", comment: "")
             case .searching:
+                self.activityIndicator.startAnimating()
                 self.setFormEnabled(false)
                 self.messageLabel.text = NSLocalizedString("FETCHING_RESULTS", comment: "")
             case .completed:
@@ -100,7 +103,7 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
     }
 
     @objc func searchTapped() {
-        self.viewModel.getZipCodes(zipCode: zipCodeField.text, distance: distanceField.text)
+        self.viewModel.callApi(zipCode: zipCodeField.text, distance: distanceField.text)
     }
 
     // MARK: - UITableViewDataSource methods

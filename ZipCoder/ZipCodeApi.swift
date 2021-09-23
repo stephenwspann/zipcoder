@@ -21,7 +21,7 @@ fileprivate struct ApiResponseJson: Codable {
 
 class ZipCodeApi {
 
-    // NOTE: It's not great to have API keys in the Git repository.
+    // NOTE: It's not great to have API keys in a Git repository.
     // In production, this could be loaded from an external JSON file.
     private let apiKey: String = "CGk1ezxPVm53prDhs1LExkQu6xOnYMkMfUtgkVZhXoTeLfQku9zaqdXTvANfY4YH"
 
@@ -30,9 +30,9 @@ class ZipCodeApi {
         return "https://www.zipcodeapi.com/rest/" + apiKey + "/radius.json/" + zipCode + "/" + distance + "/km"
     }
 
-    func getZipCodes(zipCode: String, distance: String, completion: @escaping(Result<[ZipCode]?,Error>) -> Void) {
+    func getNearbyZipCodes(startingZipCode: String, distance: String, completion: @escaping(Result<[ZipCode]?,Error>) -> Void) {
         
-        let urlString = getApiUrlString(zipCode: zipCode, distance: distance)
+        let urlString = getApiUrlString(zipCode: startingZipCode, distance: distance)
 
         guard let url = URL(string: urlString) else {
             completion(Result {
