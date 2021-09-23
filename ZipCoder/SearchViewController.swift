@@ -106,7 +106,6 @@ class SearchViewController: UIViewController {
     }
 }
 
-
 extension SearchViewController: UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -122,9 +121,6 @@ extension SearchViewController: UITableViewDataSource {
             // return an empty cell
             return UITableViewCell()
         }
-
     }
-
-
 }
 
